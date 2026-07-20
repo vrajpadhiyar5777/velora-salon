@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Velora Studio | Luxury Unisex Salon</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0c0c0c;
+            --card-bg: #1a1a1a;
+            --gold: #d4af37;
+            --gold-light: #f3e5ab;
+            --text-light: #e0e0e0;
+            --text-muted: #a0a0a0;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Cinzel', serif;
+            color: var(--gold);
+            text-align: center;
+            font-weight: 600;
+        }
+
+        /* --- IG Top Bar --- */
+        .ig-top-bar {
+            background-color: #e1306c;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            font-weight: 500;
+        }
+        .ig-top-bar a {
+            color: white;
+            text-decoration: none;
+        }
+        .ig-top-bar a:hover {
+            text-decoration: underline;
+        }
+
+        /* --- Navigation Bar --- */
+        .top-nav {
+            background-color: #000000;
+            padding: 15px 0;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid #33290b;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+        }
+
+        .top-nav a {
+            color: var(--text-light);
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1rem;
+            font-family: 'Cinzel', serif;
+            font-weight: 600;
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
+        }
+
+        .top-nav a:hover {
+            color: var(--gold);
+        }
+
+        /* --- Header & Logo --- */
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(to bottom, #111111, #0c0c0c);
+            border-bottom: 2px solid #33290b;
+        }
+
+        .logo-img {
+            max-width: 250px;
+            height: auto;
+            border-radius: 50%;
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.15);
+        }
+
+        header h1 {
+            margin-top: 20px;
+            font-size: 2.5rem;
+            letter-spacing: 3px;
+        }
+
+        header p {
+            color: var(--gold-light);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+        
+        /* --- Sections --- */
+        section {
+            padding: 80px 20px 60px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            margin-bottom: 40px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 2px;
+            background-color: var(--gold);
+        }
+
+        /* --- Image Gallery --- */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery-item {
+            overflow: hidden;
+            border-radius: 8px;
+            border: 1px solid #333;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+            background-color: var(--card-bg);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            border-color: var(--gold);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* --- Services & Pricing --- */
+        .menu-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .menu-card {
+            background-color: var(--card-bg);
+            border: 1px solid #2a2a2a;
+            border-top: 4px solid var(--gold);
+            padding: 30px;
+            border-radius: 8px;
+        }
+
+        .menu-category {
+            margin-bottom: 30px;
+        }
+
+        .menu-category h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            text-align: left;
+            border-bottom: 1px dashed #444;
+            padding-bottom: 8px;
+            color: var(--gold-light);
+        }
+
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+        }
+
+        .menu-item .price {
+            color: var(--gold);
+            font-weight: 500;
+        }
+
+        /* --- Booking Section --- */
+        .booking-container {
+            background-color: var(--card-bg);
+            padding: 40px;
+            border-radius: 8px;
+            border: 1px solid #333;
+            max-width: 800px;
+            margin: 0 auto;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.4);
+        }
+
+        .booking-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .booking-form input, .booking-form select {
+            width: 100%;
+            padding: 15px;
+            background-color: #111;
+            border: 1px solid #333;
+            color: var(--text-light);
+            border-radius: 5px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+        }
+
+        .booking-form input:focus, .booking-form select:focus {
+            outline: none;
+            border-color: var(--gold);
+            box-shadow: 0 0 5px rgba(212, 175, 55, 0.3);
+        }
+
+        .full-width {
+            grid-column: span 2;
+        }
+
+        .book-btn {
+            grid-column: span 2;
+            background: linear-gradient(to right, #d4af37, #aa7c11);
+            color: #000;
+            padding: 15px;
+            font-size: 1.2rem;
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .book-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
+        }
+
+        /* --- Reviews Section --- */
+        .reviews-container {
+            background-color: var(--card-bg);
+            padding: 40px;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid #333;
+        }
+
+        .stars {
+            color: var(--gold);
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .review-text {
+            font-size: 1.2rem;
+            font-style: italic;
+            margin-bottom: 20px;
+            color: var(--text-light);
+        }
+
+        .review-author {
+            color: var(--gold-light);
+            font-weight: 600;
+        }
+        
+        .rating-badge {
+            display: inline-block;
+            background: var(--gold);
+            color: #000;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        /* --- Location & Contact --- */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            background-color: var(--card-bg);
+            padding: 40px;
+            border-radius: 8px;
+        }
+
+        .contact-info h3 {
+            text-align: left;
+            margin-bottom: 20px;
+        }
+
+        .contact-info p {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .contact-info span {
+            color: var(--gold);
+            margin-right: 15px;
+            font-weight: bold;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            min-height: 300px;
+            border: 2px solid #333;
+            border-radius: 8px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            background-color: #050505;
+            color: var(--text-muted);
+            border-top: 1px solid #222;
+        }
+
+        @media (max-width: 768px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+            .booking-form {
+                grid-template-columns: 1fr;
+            }
+            .full-width, .book-btn {
+                grid-column: span 1;
+            }
+            .top-nav a {
+                margin: 0 10px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="ig-top-bar">
+        <a href="https://instagram.com/velora_studio_unisexsalon" target="_blank">Follow us on Instagram: @velora_studio_unisexsalon</a>
+    </div>
+
+    <nav class="top-nav">
+        <a href="#gallery">Gallery</a>
+        <a href="#services">Services</a>
+        <a href="#book">Book Appointment</a>
+        <a href="#location">Location</a>
+    </nav>
+
+    <header>
+        <img src="images.jpg" alt="Velora Studio Logo" class="logo-img">
+        <h1>Velora Studio</h1>
+        <p>Luxury Unisex Salon</p>
+    </header>
+
+    <section id="gallery">
+        <h2 class="section-title">Experience the Luxury</h2>
+        <div class="gallery-grid">
+            <div class="gallery-item"><img src="41571ad9-7474-487c-bdc9-59b64ac4b739.jpg" alt="Reception Desk"></div>
+            <div class="gallery-item"><img src="3a01b87e-07d8-4da3-85f3-595bad919200.jpg" alt="Styling Stations"></div>
+            <div class="gallery-item"><img src="59c1bec7-6cb2-40ab-a13a-e4b9d87835d0.jpg" alt="Hair Wash Area"></div>
+            <div class="gallery-item"><img src="7c12ccc6-f5d0-4d26-8707-f19b76fdf3aa.jpg" alt="Salon Equipment"></div>
+            <div class="gallery-item"><img src="12c37a9f-5d5c-4d1d-a8bb-b7a24f89e131.jpg" alt="Premium Products Display"></div>
+            <div class="gallery-item"><img src="2d001dbb-d301-4edd-b21a-0aae93797981.jpg" alt="Salon Products"></div>
+        </div>
+    </section>
+
+    <section id="services">
+        <h2 class="section-title">Our Premium Services</h2>
+        <div class="menu-container">
+            <div class="menu-card">
+                <div class="menu-category">
+                    <h3>Women's Hair Services</h3>
+                    <div class="menu-item"><span>Women Haircut</span><span class="price">₹399</span></div>
+                    <div class="menu-item"><span>Haircut, Blowdry & Hairwash</span><span class="price">₹649</span></div>
+                    <div class="menu-item"><span>Women Hair Spa</span><span class="price">₹849</span></div>
+                    <div class="menu-item"><span>Hairwash + Blast Dry</span><span class="price">₹199</span></div>
+                    <div class="menu-item"><span>Female Hairstyling</span><span class="price">₹249</span></div>
+                </div>
+                <div class="menu-category">
+                    <h3>Men's Services</h3>
+                    <div class="menu-item"><span>Male Haircut</span><span class="price">₹350</span></div>
+                    <div class="menu-item"><span>Male Beard</span><span class="price">₹200</span></div>
+                    <div class="menu-item"><span>Haircut + Beard</span><span class="price">₹499</span></div>
+                    <div class="menu-item"><span>Male Hair Colour (Ammonia)</span><span class="price">₹999</span></div>
+                </div>
+                <div class="menu-category">
+                    <h3>Premium Hair Treatments</h3>
+                    <div class="menu-item"><span>Keratin</span><span class="price">₹2499*</span></div>
+                    <div class="menu-item"><span>Botox</span><span class="price">₹3499*</span></div>
+                    <div class="menu-item"><span>Nano Plastia</span><span class="price">₹5499*</span></div>
+                    <div class="menu-item"><span>Female Global Colour</span><span class="price">₹3000 / ₹4000</span></div>
+                </div>
+            </div>
+
+            <div class="menu-card">
+                <div class="menu-category">
+                    <h3>Skin & Facial</h3>
+                    <div class="menu-item"><span>Facial</span><span class="price">₹999</span></div>
+                    <div class="menu-item"><span>Hydra Facial</span><span class="price">₹2999</span></div>
+                    <div class="menu-item"><span>Face De-Tan</span><span class="price">₹399</span></div>
+                    <div class="menu-item"><span>Clean Up</span><span class="price">₹600</span></div>
+                </div>
+                <div class="menu-category">
+                    <h3>Waxing & Grooming</h3>
+                    <div class="menu-item"><span>Threading</span><span class="price">₹50</span></div>
+                    <div class="menu-item"><span>Full Hand Wax</span><span class="price">₹250</span></div>
+                    <div class="menu-item"><span>Full Leg Wax</span><span class="price">₹300</span></div>
+                    <div class="menu-item"><span>Rica Wax (Arms, Underarms, Legs)</span><span class="price">₹799</span></div>
+                    <div class="menu-item"><span>Bikini Wax</span><span class="price">₹599</span></div>
+                </div>
+                <div class="menu-category">
+                    <h3>Luxury Packages</h3>
+                    <div class="menu-item"><span>Silver Beauty Package</span><span class="price">₹1499</span></div>
+                    <div class="menu-item"><span>Gold Beauty Package</span><span class="price">₹1800</span></div>
+                    <div class="menu-item"><span>Platinum Beauty Package</span><span class="price">₹2500</span></div>
+                    <div class="menu-item"><span>Bridal Package</span><span class="price">Starts at ₹20,000</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="book">
+        <h2 class="section-title">Reserve Your Slot</h2>
+        <div class="booking-container">
+            <form class="booking-form" action="#" method="POST">
+                <input type="text" placeholder="Your Full Name" required>
+                <input type="tel" placeholder="Phone Number" pattern="[0-9]{10}" title="Please enter a valid 10-digit mobile number" required>
+                
+                <select class="full-width" required>
+                    <option value="" disabled selected>Select Primary Service</option>
+                    <option value="haircut">Haircut & Styling</option>
+                    <option value="color">Hair Coloring / Touch Up</option>
+                    <option value="treatment">Hair Treatment (Keratin, Botox, etc.)</option>
+                    <option value="facial">Skin & Facial</option>
+                    <option value="waxing">Waxing & Grooming</option>
+                    <option value="package">Luxury / Bridal Package</option>
+                </select>
+
+                <input type="date" required>
+                
+                <select required>
+                    <option value="" disabled selected>Select Time Slot</option>
+                    <option value="morning_1">10:30 AM - 12:00 PM</option>
+                    <option value="afternoon_1">12:00 PM - 02:00 PM</option>
+                    <option value="afternoon_2">02:00 PM - 04:00 PM</option>
+                    <option value="evening_1">04:00 PM - 06:00 PM</option>
+                    <option value="evening_2">06:00 PM - 08:00 PM</option>
+                    <option value="night">08:00 PM - 11:00 PM</option>
+                </select>
+
+                <button type="submit" class="book-btn">Confirm Appointment</button>
+            </form>
+        </div>
+    </section>
+
+    <section>
+        <h2 class="section-title">What Our Clients Say</h2>
+        <div class="reviews-container">
+            <div class="rating-badge">Google 5-Star Rating ★★★★★</div>
+            <div class="stars">★★★★★</div>
+            <p class="review-text">"Absolutely loved my visit! The staff is friendly, the space is spotless, and the service is excellent. They truly care about their clients and the quality of their work. Highly recommend if you’re looking for a fresh look and a relaxing experience."</p>
+            <p class="review-author">— Verified Google Review</p>
+        </div>
+    </section>
+
+    <section id="location">
+        <h2 class="section-title">Visit Us</h2>
+        <div class="contact-grid">
+            <div class="contact-info">
+                <h3>Contact & Location</h3>
+                <p><span>Address</span> FF 10, Krishna Complex, Opp. Mocha Cafe, Bodakdev, Ahmedabad, Gujarat 380015</p>
+                <p><span>Phone</span> +91 96648 85917</p>
+                <p><span>Hours</span> Mon-Fri: 10:30 AM - 11:00 PM <br> Sat-Sun: Open 24 Hours</p>
+            </div>
+            <div class="map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3671.696349942698!2d72.50872357603774!3d23.034874415865243!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e9b405190a027%3A0x427e4f4e7a76963c!2sVelora%20Studio%20%7C%20Unisex%20Salon!5e0!3m2!1sen!2sin!4v1715000000000!5m2!1sen!2sin" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2026 Velora Studio | Unisex Salon. All Rights Reserved. | <a href="https://instagram.com/velora_studio_unisexsalon" target="_blank">@velora_studio_unisexsalon</a></p>
+    </footer>
+
+</body>
+</html>
