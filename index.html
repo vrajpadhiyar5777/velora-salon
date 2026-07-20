@@ -448,33 +448,33 @@
     <section id="book">
         <h2 class="section-title">Reserve Your Slot</h2>
         <div class="booking-container">
-            <form class="booking-form" action="#" method="POST">
-                <input type="text" placeholder="Your Full Name" required>
-                <input type="tel" placeholder="Phone Number" pattern="[0-9]{10}" title="Please enter a valid 10-digit mobile number" required>
+            <form class="booking-form" id="appointmentForm">
+                <input type="text" id="clientName" placeholder="Your Full Name" required>
+                <input type="tel" id="clientPhone" placeholder="Phone Number" pattern="[0-9]{10}" title="Please enter a valid 10-digit mobile number" required>
                 
-                <select class="full-width" required>
+                <select id="serviceSelect" class="full-width" required>
                     <option value="" disabled selected>Select Primary Service</option>
-                    <option value="haircut">Haircut & Styling</option>
-                    <option value="color">Hair Coloring / Touch Up</option>
-                    <option value="treatment">Hair Treatment (Keratin, Botox, etc.)</option>
-                    <option value="facial">Skin & Facial</option>
-                    <option value="waxing">Waxing & Grooming</option>
-                    <option value="package">Luxury / Bridal Package</option>
+                    <option value="Haircut & Styling">Haircut & Styling</option>
+                    <option value="Hair Coloring / Touch Up">Hair Coloring / Touch Up</option>
+                    <option value="Hair Treatment">Hair Treatment (Keratin, Botox, etc.)</option>
+                    <option value="Skin & Facial">Skin & Facial</option>
+                    <option value="Waxing & Grooming">Waxing & Grooming</option>
+                    <option value="Luxury / Bridal Package">Luxury / Bridal Package</option>
                 </select>
 
-                <input type="date" required>
+                <input type="date" id="apptDate" required>
                 
-                <select required>
+                <select id="apptTime" required>
                     <option value="" disabled selected>Select Time Slot</option>
-                    <option value="morning_1">10:30 AM - 12:00 PM</option>
-                    <option value="afternoon_1">12:00 PM - 02:00 PM</option>
-                    <option value="afternoon_2">02:00 PM - 04:00 PM</option>
-                    <option value="evening_1">04:00 PM - 06:00 PM</option>
-                    <option value="evening_2">06:00 PM - 08:00 PM</option>
-                    <option value="night">08:00 PM - 11:00 PM</option>
+                    <option value="10:30 AM - 12:00 PM">10:30 AM - 12:00 PM</option>
+                    <option value="12:00 PM - 02:00 PM">12:00 PM - 02:00 PM</option>
+                    <option value="02:00 PM - 04:00 PM">02:00 PM - 04:00 PM</option>
+                    <option value="04:00 PM - 06:00 PM">04:00 PM - 06:00 PM</option>
+                    <option value="06:00 PM - 08:00 PM">06:00 PM - 08:00 PM</option>
+                    <option value="08:00 PM - 11:00 PM">08:00 PM - 11:00 PM</option>
                 </select>
 
-                <button type="submit" class="book-btn">Confirm Appointment</button>
+                <button type="submit" class="book-btn">Book via WhatsApp</button>
             </form>
         </div>
     </section>
@@ -508,5 +508,29 @@
         <p>© 2026 Velora Studio | Unisex Salon. All Rights Reserved. | <a href="https://instagram.com/velora_studio_unisexsalon" target="_blank">@velora_studio_unisexsalon</a></p>
     </footer>
 
+    <script>
+        document.getElementById('appointmentForm').addEventListener('submit', function(e) {
+            e.preventDefault(); // Prevents the page from refreshing
+
+            // Get all the values the user typed in
+            const name = document.getElementById('clientName').value;
+            const phone = document.getElementById('clientPhone').value;
+            const service = document.getElementById('serviceSelect').value;
+            const date = document.getElementById('apptDate').value;
+            const time = document.getElementById('apptTime').value;
+
+            // Format the message
+            const message = `Hello Velora Studio! I would like to book an appointment.\n\n*Name:* ${name}\n*Phone:* ${phone}\n*Service:* ${service}\n*Date:* ${date}\n*Time Slot:* ${time}`;
+            
+            // Your Salon's WhatsApp Number (919664885917)
+            const whatsappNumber = "919664885917";
+            
+            // Create the WhatsApp link
+            const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+
+            // Open WhatsApp in a new tab
+            window.open(whatsappUrl, '_blank');
+        });
+    </script>
 </body>
 </html>
